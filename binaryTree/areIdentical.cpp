@@ -1,0 +1,35 @@
+#include <iostream>
+#include <climits>
+
+struct TreeNode{
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+    
+    explicit TreeNode(int val) : data(val), left(nullptr), right(nullptr){}
+};
+
+   bool areIdentical(TreeNode* root1, TreeNode* root2){
+       if(!root1 && !root2) return true;
+       
+       if(!root1 || !root2) return false;
+       
+       return (root1->data == root2->data) && areIdentical(root1->left, root2->left) && areIdentical(root1->right, root2->right);
+       
+   }
+
+int main()
+{
+    TreeNode* tree1 = new TreeNode(1);
+    tree1->left = new TreeNode(2);
+    tree1->right = new TreeNode(3);
+    
+    TreeNode* tree2 = new TreeNode(1);
+    tree2->left = new TreeNode(2);
+    tree2->right = new TreeNode(3);
+    std::cout<<areIdentical(tree1, tree2);
+    
+    
+
+    return 0;
+}
